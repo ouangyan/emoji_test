@@ -2,6 +2,8 @@ package com.xy.test.emoji;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initAdapter(){
-        ListView listView=findViewById(R.id.lv_emoji);
+        GridView gridView=findViewById(R.id.gv_emoji);
         emojiAdapter=new EmojiAdapter(this);
-        listView.setAdapter(emojiAdapter);
+        gridView.setAdapter(emojiAdapter);
         emojiAdapter.addData();
     }
 }

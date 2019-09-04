@@ -33,4 +33,27 @@ public class JsonParseUtil {
         }
         return emojiEntityList;
     }
+
+    public static List<EmojiEntity2> parseEmojiList2(String json) {
+        List<EmojiEntity2> emojiEntityList = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray jsonArray = jsonObject.optJSONArray("emoji_list");
+            if (jsonArray != null && jsonArray.length()>0) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject1 = jsonArray.optJSONObject(i);
+                    if (jsonObject1 != null) {
+                        EmojiEntity2 mEmojiEntity = new EmojiEntity2();
+                        int unicode=jsonObject1.optInt("unicode", 0);
+                        String str=String.valueOf(Character.toChars(unicode));
+                        mEmojiEntity.setUnicode(str);
+                        emojiEntityList.add(mEmojiEntity);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return emojiEntityList;
+    }
 }
